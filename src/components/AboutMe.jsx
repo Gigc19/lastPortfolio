@@ -10,24 +10,24 @@ export const AboutSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h3>Passionate Web Developer & Tech Creator</h3>
+            <h3>Creative Front-End Developer & Visionary Web Designer</h3>
             <p className="text-muted-foreground">
-              With over 5 years of experience in web development, I specialize
-              in creating responsive, accessible, and performant web
-              applications using modern technologies.
+              As an aspiring front-end developer, I am constantly seeking to
+              improve my skills and abilities. I am dedicated to doing my best
+              in every project, ensuring I grow with each challenge.
             </p>
             <p className="text-muted-foreground">
-              I'm passionate about creating elegant solutions to complex
-              problems, and I'm constantly learning new technologies and
-              techniques to stay at the forefront of the ever-evolving web
-              landscape.
+              I enjoy my profession as a front-end developer because it lets me
+              focus on projects and create solutions. I’m also highly
+              communicative, which helps me collaborate effectively with teams
+              and clients, ensuring smooth progress and clear communication.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center ">
               <a href="#contact" className="cosmic-button">
                 Get In Touch
               </a>
               <a
-                href=""
+                href="/public/projects/GOMURASHVILI.pdf" target="_blank"
                 className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-color duration-300"
               >
                 Download CV
