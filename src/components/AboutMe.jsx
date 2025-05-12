@@ -1,5 +1,12 @@
 import { Briefcase, Code, User } from "lucide-react";
 
+const projects = [
+  {
+    id: 3,
+    Download: "/projects/GOMURASHVILI.pdf",
+  },
+];
+
 export const AboutSection = () => {
   return (
     <section id="about" className="py-24 px-4 relative">
@@ -26,12 +33,16 @@ export const AboutSection = () => {
               <a href="#contact" className="cosmic-button">
                 Get In Touch
               </a>
-              <a
-                href="/public/projects/GOMURASHVILI.pdf" target="_blank"
-                className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-color duration-300"
-              >
-                Download CV
-              </a>
+              {projects.map((project, key) => (
+                <a
+                  key={key}
+                  href={project.Download}
+                  target="_blank"
+                  className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 transition-colors duration-300"
+                >
+                  Download CV
+                </a>
+              ))}
             </div>
           </div>
           <div className="grid grid-cols-1 gap-6">

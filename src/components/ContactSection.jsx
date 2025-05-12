@@ -11,10 +11,13 @@ import {
 import { cn } from "@/lib/utils";
 import { useToast } from "../hooks/use-toast";
 import { useState } from "react";
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const form = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,6 +30,22 @@ export const ContactSection = () => {
       });
       setIsSubmitting(false);
     }, 1500);
+  };
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("service_ri41xvg", "template_p8wc2ae", form.current, {
+        publicKey: "lK2869W1n3CD8vEkl",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
   };
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
@@ -43,7 +62,7 @@ export const ContactSection = () => {
           <div className="space-y-8">
             <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
             <div className="space-y-6 justify-center">
-              <div className="flex items-start space-x-1">
+              <div className="flex items-start space-x-2">
                 <div className="p-3 rounded-full bg-primary/10">
                   <Mail className="h-6 w-6 text-primary " />{" "}
                 </div>
@@ -53,11 +72,11 @@ export const ContactSection = () => {
                     href="mailto:gomurashvili17@gmail.com"
                     className="text-muted-foreground hover:text-primary transition-colors"
                   >
-                    gomurashvili17@gmail.com
+                    gomura@gmail.com
                   </a>
                 </div>
               </div>
-              <div className="flex items-start space-x-8">
+              <div className="flex items-start space-x-3">
                 <div className="p-3 rounded-full bg-primary/10">
                   <Phone className="h-6 w-6 text-primary" />{" "}
                 </div>
@@ -71,7 +90,7 @@ export const ContactSection = () => {
                   </a>
                 </div>
               </div>
-              <div className="flex items-start space-x-8">
+              <div className="flex items-start space-x-3">
                 <div className="p-3 rounded-full bg-primary/10">
                   <MapPin className="h-6 w-6 text-primary" />{" "}
                 </div>
@@ -106,7 +125,13 @@ export const ContactSection = () => {
             onSubmit={handleSubmit}
           >
             <h3 className="text-2xl font semibold mb-6">Send a Message</h3>
-            <form className="sapce-y-6" action="">
+
+            <form
+              className="space-y-6"
+              action=""
+              ref={form}
+              onSubmit={sendEmail}
+            >
               <div>
                 <label
                   htmlFor="name"
@@ -116,8 +141,8 @@ export const ContactSection = () => {
                 </label>
                 <input
                   type="text"
-                  id="name"
-                  name="name"
+                  id="user_name"
+                  name="user_name"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
                   placeholder="Gigi Gomurashvili..."
@@ -132,8 +157,8 @@ export const ContactSection = () => {
                 </label>
                 <input
                   type="email"
-                  id="email"
-                  name="email"
+                  id="user_email"
+                  name="user_email"
                   required
                   className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden foucs:ring-2 focus:ring-primary"
                   placeholder="Example@gmail.com"
@@ -156,6 +181,7 @@ export const ContactSection = () => {
               </div>
               <button
                 type="submit"
+                value="Send"
                 disabled={isSubmitting}
                 className={cn(
                   "cosmic-button w-full mt-3  flex  items-center justify-center gap-4"
